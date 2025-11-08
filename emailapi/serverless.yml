@@ -1,0 +1,23 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+# org: emailapitask3
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: emailapi
+
+provider:
+  name: aws
+  runtime: python3.12
+
+functions:
+  sendEmail:
+    handler: handler.send_email
+    events:
+      - http:
+          path: send-email
+          method: post
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort:3000
